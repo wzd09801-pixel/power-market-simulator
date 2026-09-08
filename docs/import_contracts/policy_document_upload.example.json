@@ -1,0 +1,21 @@
+{
+  "target_endpoint": "POST /v1/policy/documents/upload",
+  "form_fields": {
+    "title": "Operator uploaded policy note",
+    "document_layer": "user_uploaded",
+    "source_name": "Local operator upload",
+    "source_url": null
+  },
+  "file": {
+    "filename": "policy-note.txt",
+    "media_type": "text/plain",
+    "encoding": "utf-8",
+    "example_text": "Paste policy text or upload a PDF, DOCX, HTML, Markdown, or TXT file."
+  },
+  "expected_defaults": {
+    "data_mode": "user_uploaded",
+    "external_processing_allowed": false,
+    "human_review_status": "pending_review",
+    "no_auto_trading": true
+  }
+}

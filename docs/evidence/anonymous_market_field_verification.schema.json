@@ -1,0 +1,255 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/anonymous_market_field_verification.schema.json",
+  "title": "Anonymous Official Market Field Verification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "verification_id",
+    "checked_at",
+    "data_mode",
+    "official_domains",
+    "research_boundary",
+    "evidence",
+    "adapter_gate"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "./anonymous_market_field_verification.schema.json"
+    },
+    "verification_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "checked_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "data_mode": {
+      "const": "scenario_simulated"
+    },
+    "official_domains": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "research_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed",
+        "prohibited"
+      ],
+      "properties": {
+        "allowed": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "prohibited": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "evidence_id",
+          "endpoint_id",
+          "evidence_type",
+          "evidence_urls",
+          "checked_at",
+          "transport_security_status",
+          "anonymous_access_status",
+          "market_scope",
+          "market_stages",
+          "granularity",
+          "field_findings",
+          "confirmed_96_point_curve",
+          "historical_coverage",
+          "revision_behavior",
+          "conclusion",
+          "open_questions",
+          "notes"
+        ],
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "endpoint_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_type": {
+            "enum": [
+              "frontend_shell",
+              "report_html",
+              "static_bundle_contract",
+              "anonymous_api_probe",
+              "tls_probe"
+            ]
+          },
+          "evidence_urls": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "checked_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "transport_security_status": {
+            "enum": [
+              "tls_verified",
+              "insecure_http_only",
+              "tls_hostname_mismatch"
+            ]
+          },
+          "anonymous_access_status": {
+            "enum": [
+              "confirmed",
+              "not_verified",
+              "route_not_found",
+              "blocked_by_tls_validation"
+            ]
+          },
+          "market_scope": {
+            "enum": [
+              "example_province",
+              "southern_region",
+              "southern_region_and_provinces",
+              "unknown"
+            ]
+          },
+          "market_stages": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "day_ahead",
+                "real_time",
+                "aggregate"
+              ]
+            }
+          },
+          "granularity": {
+            "type": "string",
+            "minLength": 1
+          },
+          "field_findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "field_name",
+                "unit",
+                "time_semantics",
+                "participant_side",
+                "settlement_status"
+              ],
+              "properties": {
+                "field_name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "unit": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "time_semantics": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "participant_side": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "settlement_status": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "confirmed_96_point_curve": {
+            "type": "boolean"
+          },
+          "historical_coverage": {
+            "type": "string",
+            "minLength": 1
+          },
+          "revision_behavior": {
+            "type": "string",
+            "minLength": 1
+          },
+          "conclusion": {
+            "enum": [
+              "blocked",
+              "eligible_for_adapter_design"
+            ]
+          },
+          "open_questions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "notes": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "adapter_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conclusion",
+        "reason",
+        "next_requirements"
+      ],
+      "properties": {
+        "conclusion": {
+          "enum": [
+            "blocked",
+            "eligible_for_adapter_design"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "next_requirements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

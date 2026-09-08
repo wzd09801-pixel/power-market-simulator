@@ -1,0 +1,9 @@
+{
+  "trade_date": "2026-06-18",
+  "asset_id": "demo_hydro_a",
+  "scenario_id": "demo_hydro_a_normal_storage_normal_inflow_v1",
+  "energy_budget_mwh": 4200,
+  "min_output_mw": 120,
+  "max_output_mw": 600,
+  "price_signal": null
+}

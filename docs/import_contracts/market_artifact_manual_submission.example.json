@@ -1,0 +1,8 @@
+{
+  "endpoint_id": "reports_market_research",
+  "source_url": "http://reports.market.example.invalid/news/scyj/example.html",
+  "title": "Manually preserved public market report",
+  "media_type": "text/html",
+  "inline_text": "<html><body><h1>Example public market report</h1><p>Paste reviewed public text here.</p></body></html>",
+  "published_at": "2026-06-01T09:00:00+08:00"
+}

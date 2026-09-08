@@ -1,0 +1,16 @@
+{
+  "location_id": "demo_hydro_a_reference",
+  "location_name": "Demo Hydro A public analysis reference point",
+  "latitude": 30.0,
+  "longitude": 110.0,
+  "timezone": "Asia/Shanghai",
+  "forecast_days": 3,
+  "hourly_variables": [
+    "temperature_2m",
+    "precipitation",
+    "rain",
+    "weather_code",
+    "cloud_cover",
+    "wind_speed_10m"
+  ]
+}

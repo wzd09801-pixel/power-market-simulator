@@ -1,0 +1,6 @@
+{
+  "model_key": "seasonal_naive",
+  "evaluation_days": 3,
+  "lag_days": 7,
+  "lookback_days": 7
+}

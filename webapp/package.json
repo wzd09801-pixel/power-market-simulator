@@ -1,0 +1,43 @@
+{
+  "name": "example_province-power-intelligence-cockpit",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:e2e:no-data-workspaces": "playwright test --grep \"keeps mobile navigation and simulated recommendation boundaries visible|shows operator overview and reruns a fixed failed job from mobile navigation|shows source status and all five isolated BENCH research regions\"",
+    "test:e2e:research": "playwright test --grep \"shows source status\"",
+    "test:e2e:compose": "powershell -ExecutionPolicy Bypass -File ../scripts/run_compose_smoke.ps1"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^6.1.0",
+    "antd": "^6.1.0",
+    "echarts": "^6.0.0",
+    "echarts-for-react": "^3.0.5",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.60.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.0.2",
+    "eslint": "^10.0.3",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.0",
+    "globals": "^17.0.0",
+    "jsdom": "^28.0.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.48.0",
+    "vite": "^8.0.16",
+    "vitest": "^4.0.0"
+  }
+}

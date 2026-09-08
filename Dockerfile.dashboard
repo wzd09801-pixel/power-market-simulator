@@ -1,0 +1,26 @@
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PIP_DEFAULT_TIMEOUT=120
+ENV PIP_RETRIES=10
+
+WORKDIR /app
+
+COPY requirements-runtime.txt ./
+
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install --upgrade pip \
+    && pip install -r requirements-runtime.txt \
+    && pip install "streamlit>=1.37,<2"
+
+COPY pyproject.toml README.md ./
+COPY backend ./backend
+COPY frontend ./frontend
+COPY workers ./workers
+
+RUN pip install --no-deps -e .
+
+EXPOSE 8501
+
+CMD ["streamlit", "run", "frontend/streamlit_app.py", "--server.address=0.0.0.0", "--server.port=8501"]

@@ -1,0 +1,209 @@
+{
+  "package_version": "first_data_day_package_v1",
+  "package_name": "Zero-data first data day placeholder package",
+  "template_mode": true,
+  "description": "Template-only manifest for future local data. Paths are placeholders until the operator receives real files.",
+  "safety": {
+    "no_auto_trading": true,
+    "external_model_call": false,
+    "model_promotion": false,
+    "database_write": false,
+    "network_access": false,
+    "docker_required": false
+  },
+  "capability_defaults": {
+    "rag_answering_enabled": false,
+    "forecast_training_enabled": false,
+    "backtest_enabled": false,
+    "recommendation_mode": "scenario_simulated_only",
+    "external_model_call": false,
+    "no_auto_trading": true
+  },
+  "recommendation_boundaries": {
+    "data_mode_until_reviewed_evidence": "scenario_simulated",
+    "human_review_required": true,
+    "research_only_evidence_allowed": false,
+    "no_auto_trading": true
+  },
+  "files": [
+    {
+      "entry_id": "forecast_curve_csv_placeholder",
+      "relative_path": "forecast/forecast_research_curve_placeholder.csv",
+      "file_type": "csv",
+      "target_workflow": "forecast_research_curve",
+      "required_columns": ["interval_start", "price"],
+      "metadata": {
+        "data_mode": "user_uploaded",
+        "source_name": "Operator prepared local CSV",
+        "source_url": null,
+        "source_timestamp": null,
+        "timezone": "Asia/Shanghai",
+        "unit": "CNY_per_MWh",
+        "permission": "local_operator_upload",
+        "visibility_scope": "local_only",
+        "human_review_required": true,
+        "usage_scope": "research_only",
+        "interval_minutes": 15,
+        "price_unit": "CNY_per_MWh",
+        "no_auto_trading": true
+      }
+    },
+    {
+      "entry_id": "forecast_dataset_json_placeholder",
+      "relative_path": "forecast/forecast_research_dataset_placeholder.json",
+      "file_type": "json",
+      "target_workflow": "forecast_dataset_manifest",
+      "required_fields": [
+        "name",
+        "source_name",
+        "source_url",
+        "interval_minutes",
+        "timezone",
+        "price_unit",
+        "data_mode",
+        "usage_scope",
+        "points"
+      ],
+      "metadata": {
+        "data_mode": "user_uploaded",
+        "source_name": "Operator prepared local JSON",
+        "source_url": null,
+        "source_timestamp": null,
+        "timezone": "Asia/Shanghai",
+        "unit": "CNY_per_MWh",
+        "permission": "local_operator_upload",
+        "visibility_scope": "local_only",
+        "human_review_required": true,
+        "usage_scope": "research_only",
+        "interval_minutes": 15,
+        "price_unit": "CNY_per_MWh",
+        "no_auto_trading": true
+      }
+    },
+    {
+      "entry_id": "policy_pdf_placeholder",
+      "relative_path": "rag/policy_document_placeholder.pdf",
+      "file_type": "pdf",
+      "target_workflow": "rag_document_upload",
+      "metadata": {
+        "title": "Placeholder policy document",
+        "document_layer": "user_uploaded",
+        "data_mode": "user_uploaded",
+        "source_name": "Local operator upload",
+        "source_url": null,
+        "source_timestamp": null,
+        "timezone": "Asia/Shanghai",
+        "unit": null,
+        "permission": "local_operator_upload",
+        "visibility_scope": "local_only",
+        "human_review_required": true,
+        "external_processing_allowed": false,
+        "cited_evidence_required": true,
+        "no_auto_trading": true
+      }
+    },
+    {
+      "entry_id": "policy_docx_placeholder",
+      "relative_path": "rag/policy_document_placeholder.docx",
+      "file_type": "docx",
+      "target_workflow": "rag_document_upload",
+      "metadata": {
+        "title": "Placeholder Word policy note",
+        "document_layer": "user_uploaded",
+        "data_mode": "user_uploaded",
+        "source_name": "Local operator upload",
+        "source_url": null,
+        "source_timestamp": null,
+        "timezone": "Asia/Shanghai",
+        "unit": null,
+        "permission": "local_operator_upload",
+        "visibility_scope": "local_only",
+        "human_review_required": true,
+        "external_processing_allowed": false,
+        "cited_evidence_required": true,
+        "no_auto_trading": true
+      }
+    },
+    {
+      "entry_id": "market_html_placeholder",
+      "relative_path": "market/public_artifact_placeholder.html",
+      "file_type": "html",
+      "target_workflow": "market_artifact_manual_preservation",
+      "metadata": {
+        "title": "Placeholder public market artifact",
+        "data_mode": "user_uploaded",
+        "source_name": "Local preserved public artifact",
+        "source_url": null,
+        "source_timestamp": null,
+        "timezone": "Asia/Shanghai",
+        "unit": null,
+        "permission": "manual_preservation_only",
+        "visibility_scope": "local_only",
+        "human_review_required": true,
+        "manual_submission_only": true,
+        "fetch_performed": false,
+        "network_probe_performed": false,
+        "no_auto_trading": true
+      }
+    },
+    {
+      "entry_id": "weather_reference_json_placeholder",
+      "relative_path": "weather/open_meteo_reference_placeholder.json",
+      "file_type": "json",
+      "target_workflow": "weather_reference_request",
+      "required_fields": [
+        "location_id",
+        "location_name",
+        "latitude",
+        "longitude",
+        "timezone",
+        "hourly_variables"
+      ],
+      "metadata": {
+        "data_mode": "user_uploaded",
+        "source_name": "Operator prepared local weather reference",
+        "source_url": null,
+        "source_timestamp": null,
+        "timezone": "Asia/Shanghai",
+        "unit": "weather_reference",
+        "permission": "local_operator_upload",
+        "visibility_scope": "local_only",
+        "human_review_required": true,
+        "manual_submission_only": true,
+        "fetch_performed": false,
+        "network_probe_performed": false,
+        "review_package_required": true,
+        "no_auto_recommendation": true,
+        "no_auto_trading": true
+      }
+    },
+    {
+      "entry_id": "recommendation_review_context_placeholder",
+      "relative_path": "recommendation/review_context_placeholder.json",
+      "file_type": "json",
+      "target_workflow": "recommendation_review_context",
+      "required_fields": [
+        "scenario_id",
+        "data_mode",
+        "human_review_required",
+        "no_auto_trading",
+        "evidence_ready"
+      ],
+      "metadata": {
+        "data_mode": "scenario_simulated",
+        "source_name": "Operator prepared recommendation review context",
+        "source_url": null,
+        "source_timestamp": null,
+        "timezone": "Asia/Shanghai",
+        "unit": "review_context",
+        "permission": "local_operator_review",
+        "visibility_scope": "local_only",
+        "human_review_required": true,
+        "evidence_ready": false,
+        "recommendation_mode": "scenario_simulated_only",
+        "no_auto_recommendation_execution": true,
+        "no_auto_trading": true
+      }
+    }
+  ]
+}

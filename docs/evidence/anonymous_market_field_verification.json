@@ -1,0 +1,242 @@
+{
+  "$schema": "./anonymous_market_field_verification.schema.json",
+  "verification_id": "anonymous_market_field_verification_20260601",
+  "checked_at": "2026-06-01T20:00:09+08:00",
+  "data_mode": "scenario_simulated",
+  "official_domains": [
+    "portal.market.example.invalid",
+    "spot.market.example.invalid",
+    "reports.market.example.invalid"
+  ],
+  "research_boundary": {
+    "allowed": [
+      "Read registered official public endpoint URLs.",
+      "Inspect same-origin static resources exposed by registered official public pages.",
+      "Record anonymous access, transport status, observed field semantics, and open questions."
+    ],
+    "prohibited": [
+      "Disable TLS verification.",
+      "Automate login or use market-participant credentials.",
+      "Implement automated collection, scheduled jobs, or arbitrary URL fetch APIs.",
+      "Infer or fabricate Example Province 96-point price curves from unverified fields."
+    ]
+  },
+  "evidence": [
+    {
+      "evidence_id": "gd_portal_public_shell_20260601",
+      "endpoint_id": "example_province_portal_home",
+      "evidence_type": "frontend_shell",
+      "evidence_urls": [
+        "https://portal.market.example.invalid/synthetic-fixture/1",
+        "https://portal.market.example.invalid/synthetic-fixture/2"
+      ],
+      "checked_at": "2026-06-01T20:00:09+08:00",
+      "transport_security_status": "tls_verified",
+      "anonymous_access_status": "confirmed",
+      "market_scope": "example_province",
+      "market_stages": [],
+      "granularity": "frontend_shell_only",
+      "field_findings": [],
+      "confirmed_96_point_curve": false,
+      "historical_coverage": "Not verified. The anonymous frontend shell and same-origin bundle were inspected only.",
+      "revision_behavior": "Not verified.",
+      "conclusion": "blocked",
+      "open_questions": [
+        "Which fixed same-origin API endpoints, if any, are intended for anonymous public disclosure?",
+        "Which anonymous fields represent Example Province day-ahead or real-time prices?",
+        "What are the units, timestamp semantics, interval granularity, historical range, and revision rules?"
+      ],
+      "notes": "Synthetic protocol fixture. Does not describe a real endpoint or observed access."
+    },
+    {
+      "evidence_id": "southern_spot_public_shell_20260601",
+      "endpoint_id": "southern_spot_public_frontend",
+      "evidence_type": "frontend_shell",
+      "evidence_urls": [
+        "https://spot.market.example.invalid/synthetic-fixture/1",
+        "https://spot.market.example.invalid/synthetic-fixture/2"
+      ],
+      "checked_at": "2026-06-01T20:00:09+08:00",
+      "transport_security_status": "tls_verified",
+      "anonymous_access_status": "confirmed",
+      "market_scope": "southern_region",
+      "market_stages": [],
+      "granularity": "frontend_shell_only",
+      "field_findings": [],
+      "confirmed_96_point_curve": false,
+      "historical_coverage": "Not verified. The anonymous frontend shell and the script URL exposed by its HTML were inspected only.",
+      "revision_behavior": "Not verified.",
+      "conclusion": "blocked",
+      "open_questions": [
+        "Does the registered regional frontend expose an intended anonymous public data endpoint?",
+        "If public fields exist, are they Southern-region totals or province-level values?",
+        "Are any fields day-ahead or real-time interval prices, and what are their units and revision rules?"
+      ],
+      "notes": "Synthetic protocol fixture. Does not describe a real endpoint or observed access."
+    },
+    {
+      "evidence_id": "southern_spot_public_bundle_contract_20260601",
+      "endpoint_id": "southern_spot_public_frontend",
+      "evidence_type": "static_bundle_contract",
+      "evidence_urls": [
+        "https://spot.market.example.invalid/synthetic-fixture/1",
+        "https://spot.market.example.invalid/synthetic-fixture/2",
+        "https://spot.market.example.invalid/synthetic-fixture/3"
+      ],
+      "checked_at": "2026-06-01T20:13:59+08:00",
+      "transport_security_status": "tls_verified",
+      "anonymous_access_status": "confirmed",
+      "market_scope": "southern_region_and_provinces",
+      "market_stages": [
+        "aggregate"
+      ],
+      "granularity": "monthly_and_year_to_date_ui_aggregates",
+      "field_findings": [
+        {
+          "field_name": "otherData.energyPrice",
+          "unit": "fen",
+          "time_semantics": "The public bundle maps this field to a current-month electricity-price average decrease label for province-level marketized trading.",
+          "participant_side": "not_exposed_by_bundle",
+          "settlement_status": "not_exposed_by_bundle"
+        },
+        {
+          "field_name": "otherData.marketShare",
+          "unit": "percent",
+          "time_semantics": "The public bundle maps this field to a marketized-share label.",
+          "participant_side": "not_exposed_by_bundle",
+          "settlement_status": "not_exposed_by_bundle"
+        },
+        {
+          "field_name": "otherData.currentYearTotalEnergy",
+          "unit": "100_million_kwh",
+          "time_semantics": "The public bundle maps this field to a year-to-date energy label.",
+          "participant_side": "not_exposed_by_bundle",
+          "settlement_status": "not_exposed_by_bundle"
+        },
+        {
+          "field_name": "otherData.currentYearOnYear",
+          "unit": "percent",
+          "time_semantics": "The public bundle maps this field to a year-on-year label.",
+          "participant_side": "not_exposed_by_bundle",
+          "settlement_status": "not_exposed_by_bundle"
+        }
+      ],
+      "confirmed_96_point_curve": false,
+      "historical_coverage": "The public bundle exposes monthly and year-to-date UI mappings only. No reproducible response payload or historical archive was verified.",
+      "revision_behavior": "Not verified.",
+      "conclusion": "blocked",
+      "open_questions": [
+        "Is the public bundle current, and what gateway prefix does the live browser use for its anonymous requests?",
+        "Are any anonymously accessible endpoints intended to expose Example Province day-ahead or real-time interval prices?",
+        "What are the authoritative definitions and revision rules for the aggregate UI fields?"
+      ],
+      "notes": "Synthetic protocol fixture. Does not describe a real endpoint or observed access."
+    },
+    {
+      "evidence_id": "southern_spot_gateway_probe_20260601",
+      "endpoint_id": "southern_spot_public_frontend",
+      "evidence_type": "anonymous_api_probe",
+      "evidence_urls": [
+        "https://spot.market.example.invalid/synthetic-fixture/1",
+        "https://spot.market.example.invalid/synthetic-fixture/2"
+      ],
+      "checked_at": "2026-06-01T20:13:59+08:00",
+      "transport_security_status": "tls_verified",
+      "anonymous_access_status": "route_not_found",
+      "market_scope": "southern_region_and_provinces",
+      "market_stages": [
+        "aggregate"
+      ],
+      "granularity": "gateway_404_without_market_payload",
+      "field_findings": [],
+      "confirmed_96_point_curve": false,
+      "historical_coverage": "Not verified. Both fixed read-only paths returned HTTP 404 without a market payload.",
+      "revision_behavior": "Not verified.",
+      "conclusion": "blocked",
+      "open_questions": [
+        "Does the live anonymous browser call a different official gateway prefix?",
+        "Is the public frontend bundle stale relative to the deployed gateway?",
+        "Are the exposed aggregate endpoints intentionally unavailable to anonymous users?"
+      ],
+      "notes": "Synthetic protocol fixture. Does not describe a real endpoint or observed access."
+    },
+    {
+      "evidence_id": "reports_weekly_report_sample_20260529",
+      "endpoint_id": "reports_market_research",
+      "evidence_type": "report_html",
+      "evidence_urls": [
+        "http://reports.market.example.invalid/synthetic-fixture/1",
+        "http://reports.market.example.invalid/synthetic-fixture/2"
+      ],
+      "checked_at": "2026-06-01T20:00:09+08:00",
+      "transport_security_status": "insecure_http_only",
+      "anonymous_access_status": "confirmed",
+      "market_scope": "southern_region_and_provinces",
+      "market_stages": [
+        "day_ahead",
+        "real_time",
+        "aggregate"
+      ],
+      "granularity": "weekly_report_with_daily_average_aggregates",
+      "field_findings": [
+        {
+          "field_name": "average_traded_energy",
+          "unit": "100_million_kwh",
+          "time_semantics": "Daily average over the weekly reporting period.",
+          "participant_side": "generation",
+          "settlement_status": "preliminary_flash_not_final_settlement"
+        },
+        {
+          "field_name": "weighted_average_price",
+          "unit": "cny_per_mwh",
+          "time_semantics": "Weighted average over the weekly reporting period.",
+          "participant_side": "generation",
+          "settlement_status": "preliminary_flash_not_final_settlement"
+        }
+      ],
+      "confirmed_96_point_curve": false,
+      "historical_coverage": "A sampled report page published on 2026-05-29 was verified. Broader historical completeness and revision coverage remain unverified.",
+      "revision_behavior": "The report explicitly labels volume and price values as flash-report data rather than final settlement data. Post-publication revision behavior remains unverified.",
+      "conclusion": "blocked",
+      "open_questions": [
+        "When will the REPORTS public site provide a trusted HTTPS endpoint?",
+        "How complete is the historical weekly-report archive?",
+        "Are revised flash reports or final-settlement replacements published?"
+      ],
+      "notes": "Synthetic protocol fixture. Does not describe a real endpoint or observed access."
+    },
+    {
+      "evidence_id": "reports_https_tls_probe_20260601",
+      "endpoint_id": "reports_market_research_https_candidate",
+      "evidence_type": "tls_probe",
+      "evidence_urls": [
+        "https://reports.market.example.invalid/synthetic-fixture/1"
+      ],
+      "checked_at": "2026-06-01T20:00:09+08:00",
+      "transport_security_status": "tls_hostname_mismatch",
+      "anonymous_access_status": "blocked_by_tls_validation",
+      "market_scope": "southern_region",
+      "market_stages": [],
+      "granularity": "transport_probe_only",
+      "field_findings": [],
+      "confirmed_96_point_curve": false,
+      "historical_coverage": "Not applicable. Trusted HTTPS validation failed before content inspection.",
+      "revision_behavior": "Not applicable.",
+      "conclusion": "blocked",
+      "open_questions": [
+        "Will the official HTTPS certificate be corrected for reports.market.example.invalid?"
+      ],
+      "notes": "Synthetic protocol fixture. Does not describe a real endpoint or observed access."
+    }
+  ],
+  "adapter_gate": {
+    "conclusion": "blocked",
+    "reason": "No registered official endpoint has yet demonstrated a trusted anonymous HTTPS contract with verified Example Province day-ahead or real-time field semantics, units, interval timestamps, historical coverage, revision behavior, and a confirmed 96-point curve.",
+    "next_requirements": [
+      "Confirm an intended anonymous official HTTPS data endpoint.",
+      "Record field names, units, timestamps, market scope, and interval granularity from reproducible evidence.",
+      "Verify historical coverage and revision behavior.",
+      "Confirm whether an official Example Province 96-point curve is actually exposed before designing an adapter."
+    ]
+  }
+}
